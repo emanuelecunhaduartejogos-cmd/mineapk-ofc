@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mineapk.ofc - Download Minecraft APK Grátis</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛏️</text></svg>">
+    <style>
+        :root {
+            --minecraft-green: #3B8520;
+            --minecraft-dark-green: #2A6318;
+            --minecraft-brown: #8B4513;
+            --minecraft-dark-brown: #5D2906;
+            --minecraft-beige: #F7E4C3;
+            --minecraft-gray: #8C8C8C;
+            --minecraft-dark-gray: #464646;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(59, 133, 32, 0.15) 0%, transparent 55%),
+                radial-gradient(circle at 75% 75%, rgba(139, 69, 19, 0.1) 0%, transparent 55%);
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header e Navegação */
+        header {
+            background-color: var(--minecraft-dark-green);
+            padding: 20px 0;
+            border-bottom: 5px solid var(--minecraft-brown);
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            color: white;
+            text-shadow: 3px 3px 0 var(--minecraft-dark-brown);
+            letter-spacing: 1px;
+        }
+        
+        .logo-icon {
+            font-size: 36px;
+            filter: drop-shadow(3px 3px 0 var(--minecraft-dark-brown));
+        }
+        
+        .login-btn {
+            background-color: var(--minecraft-brown);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            border-bottom: 4px solid var(--minecraft-dark-brown);
+            transition: all 0.2s;
+        }
+        
+        .login-btn:hover {
+            background-color: var(--minecraft-dark-brown);
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-top: 30px;
+        }
+        
+        .download-section {
+            background-color: rgba(42, 99, 24, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 5px solid var(--minecraft-brown);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .version-badge {
+            display: inline-block;
+            background-color: var(--minecraft-brown);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border: 2px solid var(--minecraft-beige);
+        }
+        
+        .download-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 0 var(--minecraft-dark-brown);
+        }
+        
+        .download-info {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--minecraft-brown);
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background-color: var(--minecraft-green);
+            color: white;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 6px solid var(--minecraft-dark-green);
+            transition: all 0.2s;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--minecraft-dark-green);
+            transform: translateY(4px);
+            border-bottom-width: 2px;
+        }
+        
+        .admin-edit-btn {
+            background-color: var(--minecraft-gray);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: none;
+            margin-top: 10px;
+        }
+        
+        /* About Section */
+        .about-section {
+            background-color: rgba(42, 99, 24, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 5px solid var(--minecraft-brown);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .about-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 0 var(--minecraft-dark-brown);
+        }
+        
+        .about-content {
+            line-height: 1.8;
+        }
+        
+        .minecraft-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .feature {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--minecraft-brown);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid var(--minecraft-dark-gray);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Modal de Login */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: var(--minecraft-dark-green);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            border: 5px solid var(--minecraft-brown);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 0 var(--minecraft-dark-brown);
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 2px solid var(--minecraft-dark-gray);
+            background-color: #2a2a2a;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+        
+        .modal-btn {
+            padding: 12px 25px;
+            border-radius: 5px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .modal-btn.primary {
+            background-color: var(--minecraft-green);
+            color: white;
+        }
+        
+        .modal-btn.secondary {
+            background-color: var(--minecraft-gray);
+            color: white;
+        }
+        
+        .modal-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        /* Modal de Edição */
+        .edit-modal-content {
+            background-color: var(--minecraft-dark-green);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 700px;
+            border: 5px solid var(--minecraft-brown);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .edit-area {
+            margin-bottom: 25px;
+        }
+        
+        .edit-area label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .edit-area textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 2px solid var(--minecraft-dark-gray);
+            background-color: #2a2a2a;
+            color: white;
+            font-size: 16px;
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .edit-area input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 2px solid var(--minecraft-dark-gray);
+            background-color: #2a2a2a;
+            color: white;
+            font-size: 16px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .download-btn {
+                padding: 15px 20px;
+                font-size: 18px;
+            }
+            
+            .logo h1 {
+                font-size: 24px;
+            }
+            
+            .download-section, .about-section {
+                padding: 20px;
+            }
+            
+            .minecraft-features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .modal-content, .edit-modal-content {
+                padding: 20px;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
+            
+            .modal-btn {
+                width: 100%;
+            }
+        }
+        
+        /* Estilo do botão de logout */
+        .logout-btn {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            display: none;
+            margin-left: 10px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-email {
+            color: var(--minecraft-beige);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">⛏️</div>
+                    <h1>mineapk.ofc</h1>
+                </div>
+                <div class="user-info">
+                    <button class="login-btn" id="loginBtn">Área do Proprietário</button>
+                    <button class="logout-btn" id="logoutBtn">Sair</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="main-content">
+            <section class="download-section">
+                <div class="version-badge">Versão 1.21.132</div>
+                <h2 class="download-title">Download Minecraft APK Grátis</h2>
+                
+                <div class="download-info">
+                    <p><strong>Tamanho:</strong> ~250 MB</p>
+                    <p><strong>Atualizado:</strong> 15 de outubro de 2023</p>
+                    <p><strong>Requisitos:</strong> Android 5.0 ou superior</p>
+                </div>
+                
+                <a href="#" class="download-btn" id="downloadLink">BAIXAR MINECRAFT 1.21.132</a>
+                
+                <button class="admin-edit-btn" id="editDownloadBtn">Editar Link de Download</button>
+                
+                <p style="margin-top: 15px; font-size: 14px; color: #ccc;">
+                    Clique no botão acima para baixar o APK do Minecraft. Não é necessário fazer login para download.
+                </p>
+            </section>
+            
+            <section class="about-section">
+                <h2 class="about-title">Sobre o Minecraft</h2>
+                <div class="about-content" id="aboutContent">
+                    <p>Minecraft é um jogo sandbox que permite aos jogadores construírem e explorarem mundos feitos de blocos. Com gráficos pixelizados que se tornaram sua marca registrada, o jogo oferece infinitas possibilidades de criação e aventura.</p>
+                    
+                    <p>No modo Sobrevivência, os jogadores devem coletar recursos, construir abrigos e lutar contra monstros para sobreviver. Já no modo Criativo, os jogadores têm recursos ilimitados e podem voar, focando apenas na construção e na criatividade.</p>
+                    
+                    <div class="minecraft-features">
+                        <div class="feature">
+                            <h3>🌍 Mundo Aberto</h3>
+                            <p>Explore mundos infinitamente gerados com diversas biomas, desde desertos até florestas geladas.</p>
+                        </div>
+                        <div class="feature">
+                            <h3>⚒️ Crafting e Construção</h3>
+                            <p>Crie ferramentas, armas e construa desde casas simples até cidades inteiras com blocos.</p>
+                        </div>
+                        <div class="feature">
+                            <h3>👥 Multijogador</h3>
+                            <p>Jogue com amigos em servidores online e compartilhe suas criações com a comunidade.</p>
+                        </div>
+                        <div class="feature">
+                            <h3>🧩 Modos de Jogo</h3>
+                            <p>Experimente diferentes modos como Sobrevivência, Criativo, Aventura e Spectador.</p>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 20px;">A versão 1.21.132 inclui novas estruturas, mobs, itens e melhorias de desempenho para uma experiência ainda mais imersiva.</p>
+                </div>
+                
+                <button class="admin-edit-btn" id="editAboutBtn">Editar Conteúdo</button>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="container">
+        <p>mineapk.ofc &copy; 2023 - Site não oficial para download de Minecraft APK</p>
+        <p>Este site é apenas para fins educacionais. Minecraft é uma marca registrada da Mojang Studios.</p>
+    </footer>
+    
+    <!-- Modal de Login -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <h2 class="modal-title">Login do Proprietário</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Apenas o proprietário pode acessar esta área</p>
+            
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="Digite seu e-mail">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" placeholder="Digite sua senha">
+            </div>
+            
+            <div class="error-message" id="loginError">E-mail ou senha incorretos!</div>
+            
+            <div class="modal-buttons">
+                <button class="modal-btn primary" id="submitLogin">Entrar</button>
+                <button class="modal-btn secondary" id="cancelLogin">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Edição de Download -->
+    <div class="modal" id="editDownloadModal">
+        <div class="edit-modal-content">
+            <h2 class="modal-title">Editar Link de Download</h2>
+            
+            <div class="edit-area">
+                <label for="downloadUrl">URL do Download</label>
+                <input type="text" id="downloadUrl" placeholder="Cole aqui o novo link de download">
+            </div>
+            
+            <div class="edit-area">
+                <label for="downloadInfo">Informações do Download</label>
+                <textarea id="downloadInfo" placeholder="Edite as informações sobre o download"></textarea>
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="modal-btn primary" id="saveDownloadEdit">Salvar Alterações</button>
+                <button class="modal-btn secondary" id="cancelDownloadEdit">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Edição do Sobre -->
+    <div class="modal" id="editAboutModal">
+        <div class="edit-modal-content">
+            <h2 class="modal-title">Editar Conteúdo "Sobre o Minecraft"</h2>
+            
+            <div class="edit-area">
+                <label for="aboutText">Conteúdo da Seção</label>
+                <textarea id="aboutText" placeholder="Edite o conteúdo sobre o Minecraft"></textarea>
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="modal-btn primary" id="saveAboutEdit">Salvar Alterações</button>
+                <button class="modal-btn secondary" id="cancelAboutEdit">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Dados iniciais
+        const ownerEmail = "emanuelecunhaduartejogos@gmail.com";
+        const defaultPassword = "minecraft123"; // Senha padrão para demonstração
+        
+        // Elementos do DOM
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const loginModal = document.getElementById('loginModal');
+        const editDownloadBtn = document.getElementById('editDownloadBtn');
+        const editAboutBtn = document.getElementById('editAboutBtn');
+        const editDownloadModal = document.getElementById('editDownloadModal');
+        const editAboutModal = document.getElementById('editAboutModal');
+        const downloadLink = document.getElementById('downloadLink');
+        const aboutContent = document.getElementById('aboutContent');
+        const downloadInfo = document.querySelector('.download-info');
+        
+        // Verificar se o usuário já está logado
+        let isLoggedIn = localStorage.getItem('mineapkLoggedIn') === 'true';
+        let currentUser = localStorage.getItem('mineapkUserEmail');
+        
+        // Inicializar a interface baseada no estado de login
+        function updateUIForLogin() {
+            if (isLoggedIn && currentUser === ownerEmail) {
+                // Mostrar botões de edição
+                editDownloadBtn.style.display = 'inline-block';
+                editAboutBtn.style.display = 'inline-block';
+                loginBtn.style.display = 'none';
+                logoutBtn.style.display = 'inline-block';
+                
+                // Atualizar informações do usuário
+                const userInfo = document.querySelector('.user-info');
+                if (!document.querySelector('.user-email')) {
+                    const userEmail = document.createElement('div');
+                    userEmail.className = 'user-email';
+                    userEmail.textContent = currentUser;
+                    userInfo.insertBefore(userEmail, logoutBtn);
+                }
+            } else {
+                // Ocultar botões de edição
+                editDownloadBtn.style.display = 'none';
+                editAboutBtn.style.display = 'none';
+                loginBtn.style.display = 'inline-block';
+                logoutBtn.style.display = 'none';
+                
+                // Remover informações do usuário
+                const userEmail = document.querySelector('.user-email');
+                if (userEmail) {
+                    userEmail.remove();
+                }
+            }
+        }
+        
+        // Carregar dados salvos
+        function loadSavedData() {
+            // Carregar link de download
+            const savedDownloadLink = localStorage.getItem('mineapkDownloadLink');
+            if (savedDownloadLink) {
+                downloadLink.href = savedDownloadLink;
+            } else {
+                // Link padrão (apenas para demonstração)
+                downloadLink.href = "https://example.com/minecraft_1.21.132.apk";
+                localStorage.setItem('mineapkDownloadLink', downloadLink.href);
+            }
+            
+            // Carregar informações do download
+            const savedDownloadInfo = localStorage.getItem('mineapkDownloadInfo');
+            if (savedDownloadInfo) {
+                downloadInfo.innerHTML = savedDownloadInfo;
+            }
+            
+            // Carregar conteúdo sobre o Minecraft
+            const savedAboutContent = localStorage.getItem('mineapkAboutContent');
+            if (savedAboutContent) {
+                aboutContent.innerHTML = savedAboutContent;
+            }
+        }
+        
+        // Abrir modal de login
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('loginError').style.display = 'none';
+        });
+        
+        // Fechar modal de login
+        document.getElementById('cancelLogin').addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+        
+        // Submeter login
+        document.getElementById('submitLogin').addEventListener('click', () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Verificar credenciais
+            if (email === ownerEmail && password === defaultPassword) {
+                // Login bem-sucedido
+                isLoggedIn = true;
+                currentUser = email;
+                localStorage.setItem('mineapkLoggedIn', 'true');
+                localStorage.setItem('mineapkUserEmail', email);
+                
+                loginModal.style.display = 'none';
+                updateUIForLogin();
+                
+                alert('Login realizado com sucesso! Agora você pode editar o conteúdo do site.');
+            } else {
+                // Login falhou
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+        
+        // Logout
+        logoutBtn.addEventListener('click', () => {
+            isLoggedIn = false;
+            currentUser = '';
+            localStorage.setItem('mineapkLoggedIn', 'false');
+            localStorage.setItem('mineapkUserEmail', '');
+            updateUIForLogin();
+            alert('Logout realizado com sucesso!');
+        });
+        
+        // Abrir modal de edição do link de download
+        editDownloadBtn.addEventListener('click', () => {
+            if (isLoggedIn && currentUser === ownerEmail) {
+                // Preencher os campos com os valores atuais
+                document.getElementById('downloadUrl').value = downloadLink.href;
+                document.getElementById('downloadInfo').value = downloadInfo.innerHTML;
+                editDownloadModal.style.display = 'flex';
+            }
+        });
+        
+        // Fechar modal de edição do download
+        document.getElementById('cancelDownloadEdit').addEventListener('click', () => {
+            editDownloadModal.style.display = 'none';
+        });
+        
+        // Salvar edição do download
+        document.getElementById('saveDownloadEdit').addEventListener('click', () => {
+            const newUrl = document.getElementById('downloadUrl').value;
+            const newInfo = document.getElementById('downloadInfo').value;
+            
+            // Validar URL
+            if (newUrl && (newUrl.startsWith('http://') || newUrl.startsWith('https://'))) {
+                downloadLink.href = newUrl;
+                localStorage.setItem('mineapkDownloadLink', newUrl);
+            } else {
+                alert('Por favor, insira uma URL válida (deve começar com http:// ou https://)');
+                return;
+            }
+            
+            // Salvar informações do download
+            if (newInfo) {
+                downloadInfo.innerHTML = newInfo;
+                localStorage.setItem('mineapkDownloadInfo', newInfo);
+            }
+            
+            editDownloadModal.style.display = 'none';
+            alert('Alterações salvas com sucesso!');
+        });
+        
+        // Abrir modal de edição do conteúdo "Sobre"
+        editAboutBtn.addEventListener('click', () => {
+            if (isLoggedIn && currentUser === ownerEmail) {
+                // Preencher o campo com o valor atual
+                document.getElementById('aboutText').value = aboutContent.innerHTML;
+                editAboutModal.style.display = 'flex';
+            }
+        });
+        
+        // Fechar modal de edição do "Sobre"
+        document.getElementById('cancelAboutEdit').addEventListener('click', () => {
+            editAboutModal.style.display = 'none';
+        });
+        
+        // Salvar edição do conteúdo "Sobre"
+        document.getElementById('saveAboutEdit').addEventListener('click', () => {
+            const newAboutContent = document.getElementById('aboutText').value;
+            
+            if (newAboutContent) {
+                aboutContent.innerHTML = newAboutContent;
+                localStorage.setItem('mineapkAboutContent', newAboutContent);
+                editAboutModal.style.display = 'none';
+                alert('Conteúdo atualizado com sucesso!');
+            } else {
+                alert('O conteúdo não pode estar vazio!');
+            }
+        });
+        
+        // Fechar modais ao clicar fora deles
+        window.addEventListener('click', (event) => {
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (event.target === editDownloadModal) {
+                editDownloadModal.style.display = 'none';
+            }
+            if (event.target === editAboutModal) {
+                editAboutModal.style.display = 'none';
+            }
+        });
+        
+        // Simular download quando o botão for clicado
+        downloadLink.addEventListener('click', (e) => {
+            if (downloadLink.href.includes('example.com')) {
+                e.preventDefault();
+                alert('Este é um site de demonstração. Em um site real, este botão iniciaria o download do APK do Minecraft.');
+                alert('Link de download atual: ' + downloadLink.href);
+            }
+        });
+        
+        // Inicializar o site
+        function init() {
+            updateUIForLogin();
+            loadSavedData();
+        }
+        
+        // Iniciar quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
